@@ -46,12 +46,26 @@ document.addEventListener("DOMContentLoaded", () => {
   /* Gallery Loader */
   const galleryGrid = document.getElementById("galleryGrid");
   const galleryItems = [
-    { url: "https://images.unsplash.com/photo-1519672860751-0f7f1aa5a94b?auto=format&w=900", category: "floral" },
-    { url: "https://images.unsplash.com/photo-1599785209795-129aebdf33fb?auto=format&w=900", category: "drip" },
-    { url: "https://images.unsplash.com/photo-1524182576065-23744cf1c7d6?auto=format&w=900", category: "floral" },
-    { url: "https://images.unsplash.com/photo-1505253758473-96b7015fcd40?auto=format&w=900", category: "kids" },
-    { url: "https://images.unsplash.com/photo-1511379922036-126cbf4f043c?auto=format&w=900", category: "wedding" },
-    { url: "https://images.unsplash.com/photo-1601612625793-3a3b145fbef4?auto=format&w=900", category: "drip" }
+    {
+      url: "https://scontent-lhr8-2.xx.fbcdn.net/v/t39.30808-6/480819768_1000296238860384_3580106696157408583_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_ohc=y1XQuO9qjXAQ7kNvwGkzc9z&_nc_oc=AdmjIPajkxDFW8aI7EsEE1k4Hw3DaPVzzc8DBDCcgrXddFfjlsE0b13dxT-QFMNS2Ac&_nc_zt=23&_nc_ht=scontent-lhr8-2.xx&_nc_gid=9SAe8_36taIbpL2bp7I91Q&oh=00_AfllTpHJ9GzFd92dBgu_GkS65lVx0H9pYm2V1b5H67E-uQ&oe=69363C5F",
+      category: "floral",
+      alt: "Pink bow-trimmed buttercream cake"
+    },
+    {
+      url: "https://scontent-lhr8-2.xx.fbcdn.net/v/t39.30808-6/480570116_1000287478861260_2664845713956705961_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_ohc=OBe2cwsdq_8Q7kNvwGwYEeX&_nc_oc=Adl-r_kDBefQGXbzf5crnc2_C9BTQfGlIHxBtTql9nuJU8eIwOAQAzvKSeqdIigsXEg&_nc_zt=23&_nc_ht=scontent-lhr8-2.xx&_nc_gid=ylk_NhfjHnGfsdEqlB79hw&oh=00_AflZKJdVdGiNw1i6G_-PUr2hhaRiCfMKsTKRR9KYxSOTKQ&oe=69362FA4",
+      category: "drip",
+      alt: "Chocolate drip celebration cake"
+    },
+    {
+      url: "https://scontent-lhr6-2.xx.fbcdn.net/v/t39.30808-6/481176147_999753605581314_2217884568539386439_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_ohc=idAOfCSNa9kQ7kNvwGbgeh8&_nc_oc=AdkhFY2-aw5mxSxts1qCcgSNYPqb2JLzdLUJ61mcYugX7nDXd5ZnMuFSkoECJ0oFPwk&_nc_zt=23&_nc_ht=scontent-lhr6-2.xx&_nc_gid=bbSk83TviS_HWwcRiOR0qg&oh=00_Afl19e3U6xZS3OPNIz2l1xr7InF5UnsCbRp8wB4y25aiQA&oe=69364D3A",
+      category: "wedding",
+      alt: "Textured ivory wedding cake"
+    },
+    {
+      url: "https://scontent-lhr8-1.xx.fbcdn.net/v/t39.30808-6/481240525_998864599003548_319281431003586274_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_ohc=-5G3pBjPEEQQ7kNvwE-Ki35&_nc_oc=Adl1YJb9TAGyq5izYKQ_2J19ztDHVo0GPEDsRqfDylwpWVJSKkTkdfxYM-W6qs3HXDE&_nc_zt=23&_nc_ht=scontent-lhr8-1.xx&_nc_gid=0wExzxxSEN4cxPJ_pyNkkw&oh=00_AflShf5DXOQlEDL7vVS6yrB4JMGip29AAT9DZXhx0j7RZA&oe=693646A6",
+      category: "kids",
+      alt: "Fun pastel birthday cake"
+    }
   ];
 
   if (galleryGrid) {
@@ -59,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const card = document.createElement("div");
       card.className = `gallery-card reveal`;
       card.dataset.category = item.category;
-      card.innerHTML = `<img src="${item.url}" alt="Cake">`;
+      card.innerHTML = `<img loading="lazy" src="${item.url}" alt="${item.alt || "Cake"}">`;
       galleryGrid.appendChild(card);
     });
   }
@@ -208,19 +222,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* Social-style feed */
   const feedGrid = document.getElementById("feedGrid");
-  const feedPool = [
-    { url: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&w=800", caption: "Lemon & raspberry ribbon cake" },
-    { url: "https://images.unsplash.com/photo-1529655683826-aba9b3e77383?auto=format&w=800", caption: "Pastel bow cupcakes" },
-    { url: "https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&w=800", caption: "Berry-studded drip" },
-    { url: "https://images.unsplash.com/photo-1524182576065-23744cf1c7d6?auto=format&w=800", caption: "Palette knife florals" },
-    { url: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&w=800", caption: "Vanilla bean cupcakes" },
-    { url: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&w=800", caption: "Chocolate fudge swirls" },
-    { url: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&w=800", caption: "Birthday pastel stack" },
-    { url: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&w=800&sat=-20", caption: "Wedding sugar flowers" },
-    { url: "https://images.unsplash.com/photo-1606313564200-e75d5e30476e?auto=format&w=800", caption: "Cookie crumble minis" },
-    { url: "https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?auto=format&w=800", caption: "Rainbow sprinkle slice" }
+  const fallbackFeed = [
+    { url: galleryItems[0].url, caption: galleryItems[0].alt },
+    { url: galleryItems[1].url, caption: galleryItems[1].alt },
+    { url: galleryItems[2].url, caption: galleryItems[2].alt },
+    { url: galleryItems[3].url, caption: galleryItems[3].alt },
+    { url: galleryItems[0].url, caption: "Buttercream bow cake detail" },
+    { url: galleryItems[1].url, caption: "Chocolate drip and sprinkles" },
+    { url: galleryItems[2].url, caption: "Ivory stacked tiers" },
+    { url: galleryItems[3].url, caption: "Pastel birthday stack" },
+    { url: galleryItems[0].url, caption: "Celebration cake close-up" }
   ];
-  let feedItems = feedPool.slice(0, 9);
+  let feedPool = [];
+  let feedItems = [];
+
+  const fetchInstagramFeed = async () => {
+    const endpoint = "https://r.jina.ai/https://www.instagram.com/bakedbysimi/";
+    const response = await fetch(endpoint);
+    if (!response.ok) throw new Error("Instagram request blocked");
+    const text = await response.text();
+
+    const urls = Array.from(text.matchAll(/"display_url":"(https:[^"\\]+?)"/g)).map((m) => m[1].replace(/\\u0026/g, "&"));
+    const captions = Array.from(text.matchAll(/"accessibility_caption":"([^"\\]+)"/g)).map((m) => m[1].replace(/\\u0026/g, "&"));
+
+    const posts = [];
+    urls.forEach((url, idx) => {
+      if (posts.find((p) => p.url === url) || posts.length >= 12) return;
+      posts.push({ url, caption: captions[idx] || "Fresh from Instagram" });
+    });
+    return posts.slice(0, 9);
+  };
 
   const renderFeed = () => {
     if (!feedGrid) return;
@@ -230,7 +261,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const card = document.createElement("div");
       card.className = "feed-card reveal";
       card.innerHTML = `
-        <img src="${post.url}" alt="${post.caption}">
+        <img loading="lazy" src="${post.url}" alt="${post.caption}">
         <div class="feed-overlay">${post.caption}</div>`;
       card.addEventListener("click", () => openLightbox(post.url, post.caption));
       feedGrid.appendChild(card);
@@ -239,6 +270,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const refreshTicker = document.getElementById("refreshTicker");
   const shuffleFeed = () => {
+    if (!feedPool.length) return;
     const randomPost = feedPool[Math.floor(Math.random() * feedPool.length)];
     feedItems.pop();
     feedItems.unshift(randomPost);
@@ -247,10 +279,21 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => refreshTicker?.classList.remove("pulse"), 600);
   };
 
-  if (feedGrid) {
+  const initFeed = async () => {
+    if (!feedGrid) return;
+    try {
+      feedPool = await fetchInstagramFeed();
+      if (refreshTicker) refreshTicker.innerHTML = '<span class="dot"></span> Live from Instagram';
+    } catch (error) {
+      feedPool = fallbackFeed;
+      if (refreshTicker) refreshTicker.innerHTML = '<span class="dot"></span> Fresh cake picks';
+    }
+    feedItems = feedPool.slice(0, 9);
     renderFeed();
-    setInterval(shuffleFeed, 10000);
-  }
+    setInterval(shuffleFeed, 12000);
+  };
+
+  initFeed();
 
   /* Build Your Cake wizard */
   const stepButtons = document.querySelectorAll(".build-step-btn");
