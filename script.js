@@ -274,10 +274,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const theme = document.querySelector('input[name="build_theme"]:checked')?.value || "Not chosen";
     const notes = document.getElementById("build_notes")?.value.trim() || "None yet – add in step 4!";
 
-    summaryBox?.querySelector('[data-summary="flavour"]')?.textContent = flavour;
-    summaryBox?.querySelector('[data-summary="size"]')?.textContent = size;
-    summaryBox?.querySelector('[data-summary="theme"]')?.textContent = theme;
-    summaryBox?.querySelector('[data-summary="notes"]')?.textContent = notes;
+    const setSummaryValue = (key, value) => {
+      const target = summaryBox?.querySelector(`[data-summary="${key}"]`);
+      if (target) target.textContent = value;
+    };
+
+    setSummaryValue("flavour", flavour);
+    setSummaryValue("size", size);
+    setSummaryValue("theme", theme);
+    setSummaryValue("notes", notes);
   };
 
   if (stepButtons.length && panels.length && prevBtn && nextBtn && summaryBox) {
