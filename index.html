@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Baked by Simi – Custom Cakes in Isleworth</title>
+
+    <!-- Meta -->
+    <meta name="description" content="Baked by Simi creates colourful bespoke cakes in Isleworth, London. Custom buttercream cakes for birthdays, weddings, baby showers and special events." />
+    <meta name="keywords" content="cakes isleworth, baked by simi, birthday cakes, custom cakes, wedding cakes, london baker" />
+
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet" />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- GSAP -->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+
+    <!-- Main JS -->
+    <script defer src="script.js"></script>
+
+    <!-- Local Business Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Bakery",
+      "name": "Baked by Simi",
+      "image": "https://images.unsplash.com/photo-1519672860751-0f7f1aa5a94b?auto=format&w=800",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "40 St Christopher's Close",
+        "addressLocality": "Isleworth",
+        "postalCode": "TW7 4NP",
+        "addressCountry": "GB"
+      },
+      "telephone": "+44 7894 161565",
+      "url": "https://electro-host.co.uk/bakedbysimi",
+      "servesCuisine": "Bakery",
+      "priceRange": "££",
+      "sameAs": [
+        "https://www.facebook.com/p/Baked-by-Simi-100066400524082/",
+        "https://www.instagram.com/bakedbysimi"
+      ]
+    }
+    </script>
+</head>
+<body>
+
+<!-- Parallax background & sprinkles -->
+<div class="parallax-bg" id="parallaxBg"></div>
+<div class="sprinkles-layer" id="sprinklesLayer"></div>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <div class="logo">Baked <span>by</span> Simi</div>
+
+    <nav class="nav" id="navMenu">
+      <a href="#home" class="nav-link"><i class="ri-home-heart-fill"></i> Home</a>
+      <a href="#popular" class="nav-link"><i class="ri-gift-fill"></i> Popular</a>
+      <a href="#build" class="nav-link"><i class="ri-magic-fill"></i> Build Your Cake</a>
+      <a href="#gallery" class="nav-link"><i class="ri-cake-3-fill"></i> Gallery</a>
+      <a href="#about" class="nav-link"><i class="ri-user-heart-fill"></i> About</a>
+      <a href="#contact" class="nav-link"><i class="ri-mail-send-fill"></i> Enquiry</a>
+    </nav>
+
+    <div id="menuToggle" class="mobile-menu-icon">
+      <i class="ri-menu-3-line"></i>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#home" class="mobile-item"><i class="ri-home-heart-fill"></i> Home</a>
+  <a href="#popular" class="mobile-item"><i class="ri-gift-fill"></i> Popular</a>
+  <a href="#build" class="mobile-item"><i class="ri-magic-fill"></i> Build Your Cake</a>
+  <a href="#gallery" class="mobile-item"><i class="ri-cake-3-fill"></i> Gallery</a>
+  <a href="#about" class="mobile-item"><i class="ri-user-heart-fill"></i> About</a>
+  <a href="#contact" class="mobile-item"><i class="ri-mail-send-fill"></i> Enquiry</a>
+</div>
+
+<!-- DRIP HEADER -->
+<div class="drip-header">
+  <svg viewBox="0 0 1440 180" preserveAspectRatio="none" class="drip-svg">
+    <path d="M0,0 C240,60 280,140 320,180 C400,180 360,80 480,60 C600,40 560,140 640,150 C720,160 720,80 840,60 C960,40 940,120 1020,140 C1100,160 1120,120 1200,90 C1320,40 1360,60 1440,90 L1440,0 Z"></path>
+  </svg>
+</div>
+
+<!-- HERO -->
+<section id="home" class="hero">
+  <div class="hero-content">
+    <h1 class="hero-title">Beautiful, Handcrafted Cakes in Isleworth</h1>
+    <p class="hero-subtitle">
+      Bespoke buttercream cakes for birthdays, weddings, baby showers and every sweet moment in between.
+    </p>
+
+    <div class="hero-btns">
+      <a href="#build" class="btn primary"><i class="ri-magic-fill"></i> Build Your Cake</a>
+      <a href="#gallery" class="btn outline"><i class="ri-image-2-line"></i> View Gallery</a>
+    </div>
+
+    <!-- 3D Cake Viewer -->
+    <div class="cake-viewer reveal" id="cakeViewer">
+      <div class="cake-card">
+        <div class="cake-tier tier-top"></div>
+        <div class="cake-tier tier-middle"></div>
+        <div class="cake-tier tier-bottom"></div>
+        <div class="cake-plate"></div>
+      </div>
+      <p class="cake-viewer-caption">Spin & scroll for a 3D-style look</p>
+    </div>
+  </div>
+
+  <div class="hero-images">
+    <img src="https://images.unsplash.com/photo-1511379922036-126cbf4f043c?auto=format&w=800" class="hero-img floating" alt="Cake 1" />
+    <img src="https://images.unsplash.com/photo-1524182576065-23744cf1c7d6?auto=format&w=800" class="hero-img floating delay1" alt="Cake 2" />
+    <img src="https://images.unsplash.com/photo-1505253758473-96b7015fcd40?auto=format&w=800" class="hero-img floating delay2" alt="Cake 3" />
+  </div>
+</section>
+
+<!-- FROSTING WAVE -->
+<div class="wave-wrapper">
+  <svg viewBox="0 0 1440 200" preserveAspectRatio="none" class="wave-svg">
+    <path d="M0,160 C240,220 480,120 720,160 C960,200 1200,140 1440,180 L1440,0 L0,0 Z" />
+  </svg>
+</div>
+
+<!-- POPULAR & PRICING -->
+<section id="popular" class="popular">
+  <h2 class="section-title">Most Loved & Pricing</h2>
+  <p class="section-subtitle">A few favourites and starting prices.</p>
+
+  <div class="popular-grid">
+    <div class="popular-card reveal">
+      <h3>Birthday Buttercream</h3>
+      <p class="popular-desc">Classic layered sponge with personalised toppers and sprinkles.</p>
+      <p class="popular-price">From £65 (6")</p>
+    </div>
+    <div class="popular-card reveal">
+      <h3>Floral Celebration</h3>
+      <p class="popular-desc">Buttercream blooms, piping and pastel tones for every occasion.</p>
+      <p class="popular-price">From £85 (8")</p>
+    </div>
+    <div class="popular-card reveal">
+      <h3>Kids Theme Cakes</h3>
+      <p class="popular-desc">Characters, colours and themes your little ones will love.</p>
+      <p class="popular-price">From £90</p>
+    </div>
+  </div>
+
+  <div class="sizes-flavours">
+    <div class="flavour-menu reveal">
+      <h3>Flavour Menu</h3>
+      <ul>
+        <li>Chocolate fudge</li>
+        <li>Vanilla bean & raspberry</li>
+        <li>Lemon drizzle</li>
+        <li>Red velvet</li>
+        <li>Cookies & cream</li>
+      </ul>
+      <p class="note">Other flavours available on request.</p>
+    </div>
+
+    <div class="size-visualiser reveal">
+      <h3>Cake Sizes</h3>
+      <div class="size-circles">
+        <div class="size-circle">
+          <div class="circle circle-small"></div>
+          <p>6" – serves ~10</p>
+        </div>
+        <div class="size-circle">
+          <div class="circle circle-medium"></div>
+          <p>8" – serves ~18</p>
+        </div>
+        <div class="size-circle">
+          <div class="circle circle-large"></div>
+          <p>10" – serves ~28</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wave-wrapper wave-flip">
+  <svg viewBox="0 0 1440 200" preserveAspectRatio="none" class="wave-svg">
+    <path d="M0,40 C240,0 480,120 720,80 C960,40 1200,60 1440,20 L1440,200 L0,200 Z" />
+  </svg>
+</div>
+
+<!-- BUILD YOUR CAKE WIZARD -->
+<section id="build" class="build-section">
+  <h2 class="section-title">Build Your Cake</h2>
+  <p class="section-subtitle">Choose your flavour, size and theme – Simi will do the magic.</p>
+
+  <div class="build-card reveal">
+    <div class="build-steps">
+      <button class="build-step-btn active" data-step="1">1. Flavour</button>
+      <button class="build-step-btn" data-step="2">2. Size</button>
+      <button class="build-step-btn" data-step="3">3. Theme</button>
+      <button class="build-step-btn" data-step="4">4. Details</button>
+    </div>
+
+    <div class="build-panels">
+      <div class="build-panel" data-step="1">
+        <p>Select a flavour:</p>
+        <div class="build-options">
+          <label><input type="radio" name="build_flavour" value="Chocolate fudge" checked /> Chocolate fudge</label>
+          <label><input type="radio" name="build_flavour" value="Vanilla & raspberry" /> Vanilla & raspberry</label>
+          <label><input type="radio" name="build_flavour" value="Red velvet" /> Red velvet</label>
+        </div>
+      </div>
+      <div class="build-panel hidden" data-step="2">
+        <p>Select a size:</p>
+        <div class="build-options">
+          <label><input type="radio" name="build_size" value="6 inch" checked /> 6 inch</label>
+          <label><input type="radio" name="build_size" value="8 inch" /> 8 inch</label>
+          <label><input type="radio" name="build_size" value="10 inch" /> 10 inch</label>
+        </div>
+      </div>
+      <div class="build-panel hidden" data-step="3">
+        <p>Select a theme:</p>
+        <div class="build-options">
+          <label><input type="radio" name="build_theme" value="Floral pastel" checked /> Floral pastel</label>
+          <label><input type="radio" name="build_theme" value="Kids character" /> Kids character</label>
+          <label><input type="radio" name="build_theme" value="Elegant minimal" /> Elegant minimal</label>
+        </div>
+      </div>
+      <div class="build-panel hidden" data-step="4">
+        <p>Add any notes:</p>
+        <textarea id="build_notes" placeholder="Colours, name on cake, date needed, allergies..."></textarea>
+      </div>
+    </div>
+
+    <div class="build-footer">
+      <button class="btn outline" id="buildPrev">Previous</button>
+      <button class="btn primary" id="buildNext">Next</button>
+    </div>
+
+    <div class="build-summary" id="buildSummary">
+      <h3>Your Cake Summary</h3>
+      <p><strong>Flavour:</strong> <span data-summary="flavour">Chocolate fudge</span></p>
+      <p><strong>Size:</strong> <span data-summary="size">6 inch</span></p>
+      <p><strong>Theme:</strong> <span data-summary="theme">Floral pastel</span></p>
+      <p><strong>Notes:</strong> <span data-summary="notes">None yet – add in step 4!</span></p>
+      <a href="#contact" class="btn primary build-to-enquiry">Send This with Enquiry</a>
+    </div>
+  </div>
+</section>
+
+<div class="wave-wrapper">
+  <svg viewBox="0 0 1440 200" preserveAspectRatio="none" class="wave-svg">
+    <path d="M0,160 C240,220 480,120 720,160 C960,200 1200,140 1440,180 L1440,0 L0,0 Z" />
+  </svg>
+</div>
+
+<!-- GALLERY + FILTERS -->
+<section id="gallery" class="gallery-section">
+  <h2 class="section-title">Cake Gallery</h2>
+  <p class="section-subtitle">Filter by style to find inspiration.</p>
+
+  <div class="gallery-filters reveal">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="floral">Floral</button>
+    <button class="filter-btn" data-filter="kids">Kids</button>
+    <button class="filter-btn" data-filter="wedding">Wedding</button>
+    <button class="filter-btn" data-filter="drip">Drip</button>
+  </div>
+
+  <div class="gallery-grid" id="galleryGrid"></div>
+</section>
+
+<div class="wave-wrapper wave-flip">
+  <svg viewBox="0 0 1440 200" preserveAspectRatio="none" class="wave-svg">
+    <path d="M0,40 C240,0 480,120 720,80 C960,40 1200,60 1440,20 L1440,200 L0,200 Z" />
+  </svg>
+</div>
+
+<!-- BEHIND THE SCENES -->
+<section class="bts-section">
+  <h2 class="section-title">Behind the Scenes</h2>
+  <p class="section-subtitle">A little peek into the kitchen.</p>
+
+  <div class="bts-grid">
+    <div class="bts-card reveal">
+      <img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?auto=format&w=900" alt="Mixing batter" />
+      <p>Mixing fluffy sponge batter.</p>
+    </div>
+    <div class="bts-card reveal">
+      <img src="https://images.unsplash.com/photo-1586985289906-406988974504?auto=format&w=900" alt="Piping buttercream" />
+      <p>Detail work with buttercream piping.</p>
+    </div>
+    <div class="bts-card reveal">
+      <img src="https://images.unsplash.com/photo-1509377244-9d0c0e1f4eb2?auto=format&w=900" alt="Decorating cake" />
+      <p>Final touches just before collection.</p>
+    </div>
+  </div>
+</section>
+
+<div class="wave-wrapper">
+  <svg viewBox="0 0 1440 200" preserveAspectRatio="none" class="wave-svg">
+    <path d="M0,160 C240,220 480,120 720,160 C960,200 1200,140 1440,180 L1440,0 L0,0 Z" />
+  </svg>
+</div>
+
+<!-- TESTIMONIALS + AVAILABILITY -->
+<section class="testimonials-section">
+  <div class="testimonials-container">
+    <h2 class="section-title">What People Say</h2>
+    <div class="testimonial-slider reveal" id="testimonialSlider">
+      <div class="testimonial active">
+        <p class="quote">“The cake looked incredible and tasted even better. Everyone asked where we got it from.”</p>
+        <p class="name">— Sarah, 30th Birthday</p>
+      </div>
+      <div class="testimonial">
+        <p class="quote">“Our wedding cake was perfect – exactly what we imagined. Simi was so easy to work with.”</p>
+        <p class="name">— Priya & James</p>
+      </div>
+      <div class="testimonial">
+        <p class="quote">“My son was obsessed with his superhero cake. The details were unreal!”</p>
+        <p class="name">— Aisha, Kids party</p>
+      </div>
+    </div>
+    <div class="testimonial-nav">
+      <button id="testPrev"><i class="ri-arrow-left-s-line"></i></button>
+      <button id="testNext"><i class="ri-arrow-right-s-line"></i></button>
+    </div>
+  </div>
+
+  <div class="availability-card reveal">
+    <h3>Availability Snapshot</h3>
+    <p>Bookings fill up quickly, especially for weekends.</p>
+    <div class="availability-grid">
+      <div class="slot slot-open">
+        <p>This Week</p>
+        <span>2 slots left</span>
+      </div>
+      <div class="slot slot-limited">
+        <p>Next Week</p>
+        <span>1–2 slots</span>
+      </div>
+      <div class="slot slot-booked">
+        <p>Following Week</p>
+        <span>Limited – enquire</span>
+      </div>
+    </div>
+    <a href="https://wa.me/447894161565" target="_blank" class="btn outline small"><i class="ri-whatsapp-fill"></i> Check a date</a>
+  </div>
+</section>
+
+<div class="wave-wrapper wave-flip">
+  <svg viewBox="0 0 1440 200" preserveAspectRatio="none" class="wave-svg">
+    <path d="M0,40 C240,0 480,120 720,80 C960,40 1200,60 1440,20 L1440,200 L0,200 Z" />
+  </svg>
+</div>
+
+<!-- ABOUT & FAQ -->
+<section id="about" class="about-section">
+  <div class="about-card reveal">
+    <h2>About Simi</h2>
+    <p>
+      Baked by Simi is a home bakery based in Isleworth, West London, specialising in colourful, buttercream celebration cakes.
+      Every cake is made to order, from scratch, using quality ingredients and plenty of love.
+    </p>
+    <p>
+      Whether you already have a clear design in mind or just a theme and a date, Simi will help you bring it to life.
+    </p>
+    <p class="food-rating">
+      Food hygiene: <a href="https://ratings.food.gov.uk/business/1530586" target="_blank">view official rating</a>
+    </p>
+  </div>
+
+  <div class="faq-card reveal">
+    <h3>FAQs</h3>
+    <div class="faq-item">
+      <button class="faq-question">How much notice do you need?<i class="ri-arrow-down-s-line"></i></button>
+      <div class="faq-answer">Ideally 2–3 weeks, especially for weekends. For last-minute requests, please WhatsApp to check.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">Do you offer delivery?<i class="ri-arrow-down-s-line"></i></button>
+      <div class="faq-answer">Most cakes are for collection from Isleworth. Local delivery may be possible for some orders.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">Can you cater for allergies?<i class="ri-arrow-down-s-line"></i></button>
+      <div class="faq-answer">Some changes can be made (e.g. no nuts in recipe), but the kitchen handles allergens so cross-contamination cannot be fully guaranteed.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">Is a deposit required?<i class="ri-arrow-down-s-line"></i></button>
+      <div class="faq-answer">Yes, a deposit secures your date, with the remaining balance due before collection.</div>
+    </div>
+  </div>
+</section>
+
+<div class="wave-wrapper">
+  <svg viewBox="0 0 1440 200" preserveAspectRatio="none" class="wave-svg">
+    <path d="M0,160 C240,220 480,120 720,160 C960,200 1200,140 1440,180 L1440,0 L0,0 Z" />
+  </svg>
+</div>
+
+<!-- LOCATION -->
+<section class="location">
+  <div class="location-inner">
+    <div class="location-text reveal">
+      <h2>Located in Isleworth</h2>
+      <p>
+        Collection from <strong>40 St Christopher's Close, Isleworth TW7 4NP</strong>.<br>
+        Perfect for West London and surrounding areas.
+      </p>
+    </div>
+
+    <iframe
+      class="map reveal"
+      src="https://www.google.com/maps?q=40%20St%20Christopher's%20Cl%2C%20Isleworth&output=embed"
+      loading="lazy">
+    </iframe>
+  </div>
+</section>
+
+<div class="wave-wrapper wave-flip">
+  <svg viewBox="0 0 1440 200" preserveAspectRatio="none" class="wave-svg">
+    <path d="M0,40 C240,0 480,120 720,80 C960,40 1200,60 1440,20 L1440,200 L0,200 Z" />
+  </svg>
+</div>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div class="contact-box reveal">
+    <h2>Enquire About a Cake</h2>
+    <p>Share a few details and Simi will be in touch.</p>
+
+    <form action="https://formspree.io/f/mwppdkol" method="POST" class="contact-form" id="contactForm">
+      <label>Name<input type="text" name="name" required></label>
+      <label>Email<input type="email" name="email" required></label>
+      <label>Preferred date<input type="text" name="preferred_date" placeholder="e.g. 21st June" /></label>
+      <label>Message<textarea name="message" id="messageField" required></textarea></label>
+      <button class="btn primary" type="submit">Send Enquiry</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>&copy; <span id="year"></span> Baked by Simi — Isleworth</p>
+</footer>
+
+<!-- WHATSAPP BUTTON + PROMPT -->
+<a href="https://wa.me/447894161565" class="whatsapp-btn" target="_blank"><i class="ri-whatsapp-line"></i></a>
+<div class="whatsapp-prompt">
+  <p><i class="ri-whatsapp-fill"></i> Quick question about availability?</p>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close image">
+      <i class="ri-close-line"></i>
+    </button>
+    <img src="" alt="Cake preview" id="lightboxImg">
+  </div>
+</div>
+
+</body>
+</html>
