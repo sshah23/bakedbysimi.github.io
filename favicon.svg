@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Cake icon">
+  <defs>
+    <linearGradient id="cakeGrad" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#f47197" />
+      <stop offset="100%" stop-color="#ffd66b" />
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="#fff7f2" />
+  <path d="M16 36h32v12a6 6 0 0 1-6 6H22a6 6 0 0 1-6-6V36z" fill="url(#cakeGrad)" stroke="#e15984" stroke-width="2" />
+  <path d="M16 30c4 4 8-4 12 0s8-4 12 0 8-4 12 0v6H16z" fill="#ffe5f4" stroke="#f0a6c2" stroke-width="2" />
+  <circle cx="22" cy="26" r="2" fill="#f47197" />
+  <circle cx="32" cy="24" r="2" fill="#f47197" />
+  <circle cx="42" cy="26" r="2" fill="#f47197" />
+  <path d="M32 12c2 0 4 1.5 4 3.5S32 22 32 22s-4-4.5-4-6.5S30 12 32 12z" fill="#ffd66b" stroke="#f0b64f" stroke-width="2" />
+  <circle cx="32" cy="11" r="2" fill="#f47197" />
+</svg>

@@ -220,81 +220,6 @@ document.addEventListener("DOMContentLoaded", () => {
     setInterval(() => showTestimonial(testIndex + 1), 7000);
   }
 
-  /* Social-style feed */
-  const feedGrid = document.getElementById("feedGrid");
-  const fallbackFeed = [
-    { url: galleryItems[0].url, caption: galleryItems[0].alt },
-    { url: galleryItems[1].url, caption: galleryItems[1].alt },
-    { url: galleryItems[2].url, caption: galleryItems[2].alt },
-    { url: galleryItems[3].url, caption: galleryItems[3].alt },
-    { url: galleryItems[0].url, caption: "Buttercream bow cake detail" },
-    { url: galleryItems[1].url, caption: "Chocolate drip and sprinkles" },
-    { url: galleryItems[2].url, caption: "Ivory stacked tiers" },
-    { url: galleryItems[3].url, caption: "Pastel birthday stack" },
-    { url: galleryItems[0].url, caption: "Celebration cake close-up" }
-  ];
-  let feedPool = [];
-  let feedItems = [];
-
-  const fetchInstagramFeed = async () => {
-    const endpoint = "https://r.jina.ai/https://www.instagram.com/bakedbysimi/";
-    const response = await fetch(endpoint);
-    if (!response.ok) throw new Error("Instagram request blocked");
-    const text = await response.text();
-
-    const urls = Array.from(text.matchAll(/"display_url":"(https:[^"\\]+?)"/g)).map((m) => m[1].replace(/\\u0026/g, "&"));
-    const captions = Array.from(text.matchAll(/"accessibility_caption":"([^"\\]+)"/g)).map((m) => m[1].replace(/\\u0026/g, "&"));
-
-    const posts = [];
-    urls.forEach((url, idx) => {
-      if (posts.find((p) => p.url === url) || posts.length >= 12) return;
-      posts.push({ url, caption: captions[idx] || "Fresh from Instagram" });
-    });
-    return posts.slice(0, 9);
-  };
-
-  const renderFeed = () => {
-    if (!feedGrid) return;
-    feedGrid.innerHTML = "";
-
-    feedItems.forEach((post) => {
-      const card = document.createElement("div");
-      card.className = "feed-card reveal";
-      card.innerHTML = `
-        <img loading="lazy" src="${post.url}" alt="${post.caption}">
-        <div class="feed-overlay">${post.caption}</div>`;
-      card.addEventListener("click", () => openLightbox(post.url, post.caption));
-      feedGrid.appendChild(card);
-    });
-  };
-
-  const refreshTicker = document.getElementById("refreshTicker");
-  const shuffleFeed = () => {
-    if (!feedPool.length) return;
-    const randomPost = feedPool[Math.floor(Math.random() * feedPool.length)];
-    feedItems.pop();
-    feedItems.unshift(randomPost);
-    renderFeed();
-    if (refreshTicker) refreshTicker.classList.add("pulse");
-    setTimeout(() => refreshTicker?.classList.remove("pulse"), 600);
-  };
-
-  const initFeed = async () => {
-    if (!feedGrid) return;
-    try {
-      feedPool = await fetchInstagramFeed();
-      if (refreshTicker) refreshTicker.innerHTML = '<span class="dot"></span> Live from Instagram';
-    } catch (error) {
-      feedPool = fallbackFeed;
-      if (refreshTicker) refreshTicker.innerHTML = '<span class="dot"></span> Fresh cake picks';
-    }
-    feedItems = feedPool.slice(0, 9);
-    renderFeed();
-    setInterval(shuffleFeed, 12000);
-  };
-
-  initFeed();
-
   /* Build Your Cake wizard */
   const stepButtons = document.querySelectorAll(".build-step-btn");
   const panels = document.querySelectorAll(".build-panel");
@@ -355,6 +280,40 @@ document.addEventListener("DOMContentLoaded", () => {
       const notes = summaryBox.querySelector('[data-summary="notes"]').textContent;
       const template = `Cake enquiry from Build Your Cake:\n\nFlavour: ${flavour}\nSize: ${size}\nTheme: ${theme}\nNotes: ${notes}\n\nPlease add any extra info here...`;
       if (messageField && !messageField.value) messageField.value = template;
+    });
+  }
+
+  /* Serving guide rotation */
+  const rotationRange = document.getElementById("rotationRange");
+  const cakeFigures = document.querySelectorAll(".cake-3d");
+  if (rotationRange && cakeFigures.length) {
+    const updateRotation = () => {
+      cakeFigures.forEach((fig) => fig.style.setProperty("--rotation", `${rotationRange.value}deg`));
+    };
+
+    rotationRange.addEventListener("input", updateRotation);
+    cakeFigures.forEach((fig) =>
+      fig.addEventListener("click", () => {
+        const nextValue = (Number(rotationRange.value) + 45) % 360;
+        rotationRange.value = nextValue.toString();
+        updateRotation();
+      })
+    );
+
+    updateRotation();
+  }
+
+  /* reCAPTCHA guard */
+  const contactForm = document.getElementById("contactForm");
+  if (contactForm) {
+    contactForm.addEventListener("submit", (e) => {
+      if (window.grecaptcha && typeof grecaptcha.getResponse === "function") {
+        const response = grecaptcha.getResponse();
+        if (!response) {
+          e.preventDefault();
+          alert("Please confirm you're not a robot before sending.");
+        }
+      }
     });
   }
 
