@@ -18,6 +18,7 @@
 
   <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="stylesheet" href="styles.css" />
 
   <script type="application/ld+json">
@@ -44,6 +45,7 @@
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <script defer src="script.js"></script>
 </head>
 <body>
@@ -192,17 +194,36 @@
       </div>
       <div class="size-visualiser reveal">
         <h3>Serving guide</h3>
-        <div class="size-circles">
-          <div class="size-circle">
-            <div class="circle circle-small"></div>
+        <p class="size-note">Rotate the cakes to compare proportions and find the perfect fit.</p>
+
+        <label class="rotation-control" for="rotationRange">
+          <span><i class="ri-refresh-line"></i> Rotate cakes</span>
+          <input type="range" id="rotationRange" min="0" max="360" value="30" />
+        </label>
+
+        <div class="cake-showcase">
+          <div class="cake-card" data-serves="6" data-size-label="6" data-height="10">
+            <div class="cake-3d" data-size="small">
+              <div class="cake-top"></div>
+              <div class="cake-side"></div>
+              <div class="cake-shadow"></div>
+            </div>
             <p>6" – serves ~10</p>
           </div>
-          <div class="size-circle">
-            <div class="circle circle-medium"></div>
+          <div class="cake-card" data-serves="18" data-size-label="8" data-height="14">
+            <div class="cake-3d" data-size="medium">
+              <div class="cake-top"></div>
+              <div class="cake-side"></div>
+              <div class="cake-shadow"></div>
+            </div>
             <p>8" – serves ~18</p>
           </div>
-          <div class="size-circle">
-            <div class="circle circle-large"></div>
+          <div class="cake-card" data-serves="28" data-size-label="10" data-height="18">
+            <div class="cake-3d" data-size="large">
+              <div class="cake-top"></div>
+              <div class="cake-side"></div>
+              <div class="cake-shadow"></div>
+            </div>
             <p>10" – serves ~28</p>
           </div>
         </div>
@@ -377,13 +398,27 @@
   <section id="social" class="social-feed">
     <div class="section-header">
       <div>
-        <p class="eyebrow">Fresh from the feed</p>
-        <h2 class="section-title">Mini Instagram-style grid</h2>
-        <p class="section-subtitle">Live pulls from <strong>@bakedbysimi</strong> with captions on hover and a cosy lightbox view.</p>
+        <p class="eyebrow">Stay connected</p>
+        <h2 class="section-title">Sweet moments on socials</h2>
+        <p class="section-subtitle">Peek behind the bakes, message for availability, or tag your celebrations.</p>
       </div>
-      <div class="refresh-pill" id="refreshTicker"><span class="dot"></span> Auto-updating daily</div>
+      <div class="refresh-pill soft-pill"><i class="ri-heart-line"></i> Always baking with love</div>
     </div>
-    <div class="feed-grid" id="feedGrid"></div>
+
+    <div class="social-links-row">
+      <a class="social-pill instagram" href="https://www.instagram.com/bakedbysimi" target="_blank" rel="noopener">
+        <i class="ri-instagram-line"></i>
+        <span>@bakedbysimi</span>
+      </a>
+      <a class="social-pill facebook" href="https://www.facebook.com/bakedbysimi" target="_blank" rel="noopener">
+        <i class="ri-facebook-circle-line"></i>
+        <span>Facebook</span>
+      </a>
+      <a class="social-pill whatsapp" href="https://wa.me/447894161565" target="_blank" rel="noopener">
+        <i class="ri-whatsapp-line"></i>
+        <span>WhatsApp</span>
+      </a>
+    </div>
   </section>
 
   <section id="contact" class="contact-section">
@@ -393,9 +428,9 @@
         <h2 class="section-title">Share your idea, I’ll whisk it into reality.</h2>
         <p class="section-subtitle">Heartfelt replies within 24 hours, with guidance on sizing, allergens and transport.</p>
       </div>
-      <div class="contact-icons">
-        <span><i class="ri-phone-line"></i> +44 7894 161565</span>
-        <span><i class="ri-mail-send-line"></i> hello@bakedbysimi.com</span>
+      <div class="contact-details-pill">
+        <i class="ri-chat-smile-2-line"></i>
+        <span>+44 7894 161565 / hello@bakedbysimi.com</span>
       </div>
     </div>
 
@@ -404,8 +439,12 @@
         <form action="https://formspree.io/f/mwppdkol" method="POST" class="contact-form" id="contactForm">
           <label>Name<input type="text" name="name" required></label>
           <label>Email<input type="email" name="email" required></label>
-          <label>Preferred date<input type="text" name="preferred_date" placeholder="e.g. 21st June" /></label>
+          <label>Preferred date<input type="date" name="preferred_date" /></label>
           <label>Message<textarea name="message" id="messageField" required></textarea></label>
+          <div class="recaptcha-box">
+            <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
+            <small>This site is protected by reCAPTCHA.</small>
+          </div>
           <button class="btn primary heart-btn" type="submit"><span>Send Enquiry</span><i class="ri-heart-3-fill"></i></button>
         </form>
       </div>
