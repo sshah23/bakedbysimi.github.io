@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* Gallery Loader */
   const galleryGrid = document.getElementById("galleryGrid");
-  const galleryItems = [
+  const defaultGalleryItems = [
     {
       url: "https://scontent-lhr8-2.xx.fbcdn.net/v/t39.30808-6/480819768_1000296238860384_3580106696157408583_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_ohc=y1XQuO9qjXAQ7kNvwGkzc9z&_nc_oc=AdmjIPajkxDFW8aI7EsEE1k4Hw3DaPVzzc8DBDCcgrXddFfjlsE0b13dxT-QFMNS2Ac&_nc_zt=23&_nc_ht=scontent-lhr8-2.xx&_nc_gid=9SAe8_36taIbpL2bp7I91Q&oh=00_AfllTpHJ9GzFd92dBgu_GkS65lVx0H9pYm2V1b5H67E-uQ&oe=69363C5F",
       category: "floral",
@@ -68,14 +68,61 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   ];
 
-  if (galleryGrid) {
-    galleryItems.forEach((item) => {
+  const prettifyName = (file) => file.replace(/[-_]/g, " ").replace(/\.[^.]+$/, "").trim();
+
+  const loadLocalGallery = async () => {
+    try {
+      const manifest = await fetch("images/cakes/gallery.json");
+      if (manifest.ok) {
+        const data = await manifest.json();
+        return (data || []).filter(Boolean).map((file) => ({
+          url: `images/cakes/${file}`,
+          category: "uploads",
+          alt: `${prettifyName(file)} cake upload`,
+        }));
+      }
+    } catch (err) {
+      console.warn("Gallery manifest not found, falling back to directory scan.");
+    }
+
+    try {
+      const res = await fetch("images/cakes/");
+      if (!res.ok) return [];
+      const text = await res.text();
+      const matches = [...text.matchAll(/href="([^\"]+\.(?:png|jpe?g|webp|gif))"/gi)];
+      const files = [...new Set(matches.map((m) => decodeURIComponent(m[1])))] || [];
+      return files.map((file) => ({
+        url: `images/cakes/${file.replace(/^\.\//, "")}`,
+        category: "uploads",
+        alt: `${prettifyName(file)} cake upload`,
+      }));
+    } catch (err) {
+      console.error("Unable to read uploads", err);
+      return [];
+    }
+  };
+
+  const renderGallery = (items = []) => {
+    if (!galleryGrid) return;
+    galleryGrid.innerHTML = "";
+    items.forEach((item) => {
       const card = document.createElement("div");
       card.className = `gallery-card reveal`;
       card.dataset.category = item.category;
       card.innerHTML = `<img loading="lazy" src="${item.url}" alt="${item.alt || "Cake"}">`;
       galleryGrid.appendChild(card);
     });
+  };
+
+  const loadGallery = async () => {
+    if (!galleryGrid) return;
+    const uploads = await loadLocalGallery();
+    const merged = [...uploads, ...defaultGalleryItems];
+    renderGallery(merged);
+  };
+
+  if (galleryGrid) {
+    loadGallery();
   }
 
   /* Filter buttons */
@@ -314,6 +361,28 @@ document.addEventListener("DOMContentLoaded", () => {
           alert("Please confirm you're not a robot before sending.");
         }
       }
+    });
+  }
+
+  /* Mini FAQ accordion */
+  const faqItems = document.querySelectorAll("#miniFaq .faq-item");
+  if (faqItems.length) {
+    faqItems.forEach((item) => {
+      const icon = item.querySelector("i");
+      if (icon) icon.className = item.open ? "ri-subtract-line" : "ri-add-line";
+
+      item.addEventListener("toggle", () => {
+        if (item.open) {
+          faqItems.forEach((other) => {
+            if (other !== item) other.open = false;
+            const otherIcon = other.querySelector("i");
+            if (otherIcon) otherIcon.className = other.open ? "ri-subtract-line" : "ri-add-line";
+          });
+        }
+
+        const toggledIcon = item.querySelector("i");
+        if (toggledIcon) toggledIcon.className = item.open ? "ri-subtract-line" : "ri-add-line";
+      });
     });
   }
 
